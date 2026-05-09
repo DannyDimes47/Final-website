@@ -1723,7 +1723,7 @@
     const tChips  = document.querySelectorAll('.t-chip');
     const tCards  = document.querySelectorAll('.t-card');
     const T_TOTAL = tCards.length;
-    let tCur = 0;
+    let tCur = 0, tStartX = 0, tDrag = 0, tDragging = false;
 
     function tCardW() { return window.innerWidth - 52; }
 
@@ -1757,6 +1757,27 @@
         const idx = parseInt(tab.closest('.t-card').dataset.index);
         tGoTo(idx - 1);
       });
+    });
+
+    tTrack.addEventListener('touchstart', e => {
+      tStartX = e.touches[0].clientX; tDragging = true;
+      tTrack.style.transition = 'none';
+    }, { passive: true });
+
+    tTrack.addEventListener('touchmove', e => {
+      if (!tDragging) return;
+      tDrag = e.touches[0].clientX - tStartX;
+      tTrack.style.transform = `translateX(${-tCur * tCardW() + tDrag}px)`;
+    }, { passive: true });
+
+    tTrack.addEventListener('touchend', () => {
+      if (!tDragging) return;
+      tDragging = false;
+      tTrack.style.transition = 'transform 0.38s cubic-bezier(0.25,0.46,0.45,0.94)';
+      if      (tDrag < -55 && tCur < T_TOTAL - 1) tGoTo(tCur + 1);
+      else if (tDrag >  55 && tCur > 0)            tGoTo(tCur - 1);
+      else                                          tGoTo(tCur);
+      tDrag = 0;
     });
 
     window.addEventListener('resize', () => {
