@@ -661,51 +661,6 @@
     .t-pill.before { background: rgba(13,13,13,0.72); color: #fff; border: 0.5px solid rgba(255,255,255,0.55); }
     .t-pill.after  { background: #e2b714; color: #111; }
 
-    .t-peek-tab {
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      writing-mode: vertical-rl;
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: #e2b714;
-      background: rgba(13,13,13,0.86);
-      width: 22px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 8px 0 0 8px;
-      border-left: 1px solid rgba(226,183,20,0.35);
-      z-index: 4;
-      cursor: pointer;
-    }
-
-    .t-peek-tab-left {
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      writing-mode: vertical-rl;
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: #e2b714;
-      background: rgba(13,13,13,0.86);
-      width: 22px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 0 8px 8px 0;
-      border-right: 1px solid rgba(226,183,20,0.35);
-      z-index: 4;
-      cursor: pointer;
-    }
 
     .t-overlay {
       position: absolute;
@@ -1384,7 +1339,6 @@
             <img class="t-card-img" src="images/andrea-before2.png" alt="Andrea Before">
             <div class="t-overlay"></div>
             <div class="t-pill before">Before</div>
-            <div class="t-peek-tab">After</div>
             <div class="t-content">
               <span class="t-quote-mark">"</span>
               <p class="t-quote-text">I came in thinking I just needed a workout plan. What I got was a complete shift in mindset.</p>
@@ -1399,8 +1353,6 @@
             <img class="t-card-img" src="images/andrea-after2.png" alt="Andrea After">
             <div class="t-overlay"></div>
             <div class="t-pill after">After</div>
-            <div class="t-peek-tab-left">Before</div>
-            <div class="t-peek-tab">Next</div>
             <div class="t-content">
               <span class="t-quote-mark">"</span>
               <p class="t-quote-text">Never felt stronger — mentally or physically. Best decision I've made.</p>
@@ -1416,8 +1368,6 @@
             <img class="t-card-img" src="images/terry-before2.png" alt="Terry Before">
             <div class="t-overlay"></div>
             <div class="t-pill before">Before</div>
-            <div class="t-peek-tab-left">Before</div>
-            <div class="t-peek-tab">After</div>
             <div class="t-content">
               <span class="t-quote-mark">"</span>
               <p class="t-quote-text">The sessions changed everything. Coach pushes you past what you think is possible.</p>
@@ -1432,8 +1382,6 @@
             <img class="t-card-img" src="images/terry-after2.png" alt="Terry After">
             <div class="t-overlay"></div>
             <div class="t-pill after">After</div>
-            <div class="t-peek-tab-left">Before</div>
-            <div class="t-peek-tab">Next</div>
             <div class="t-content">
               <span class="t-quote-mark">"</span>
               <p class="t-quote-text">Results speak for themselves. Coach held me accountable every single week.</p>
@@ -1449,8 +1397,6 @@
             <img class="t-card-img" src="images/dan-before2.png" alt="Dan Before">
             <div class="t-overlay"></div>
             <div class="t-pill before">Before</div>
-            <div class="t-peek-tab-left">Before</div>
-            <div class="t-peek-tab">After</div>
             <div class="t-content">
               <span class="t-quote-mark">"</span>
               <p class="t-quote-text">I've tried every program out there. This is the first one that actually held me accountable.</p>
@@ -1465,8 +1411,6 @@
             <img class="t-card-img" src="images/dan-after2.jpg" alt="Dan After" style="transform:scale(1.2);transform-origin:right center;">
             <div class="t-overlay"></div>
             <div class="t-pill after">After</div>
-            <div class="t-peek-tab-left">Before</div>
-            <div class="t-peek-tab">Next</div>
             <div class="t-content">
               <span class="t-quote-mark">"</span>
               <p class="t-quote-text">The check-ins, the nutrition plan, the community — it all works together. I'm not going back.</p>
@@ -1482,8 +1426,6 @@
             <img class="t-card-img" src="images/tito-before2.png" alt="Jamal Before">
             <div class="t-overlay"></div>
             <div class="t-pill before">Before</div>
-            <div class="t-peek-tab-left">Before</div>
-            <div class="t-peek-tab">After</div>
             <div class="t-content">
               <span class="t-quote-mark">"</span>
               <p class="t-quote-text">I didn't think I could change this fast. The program broke every excuse I had.</p>
@@ -1498,7 +1440,6 @@
             <img class="t-card-img" src="images/Tito01.jpg" alt="Jamal After">
             <div class="t-overlay"></div>
             <div class="t-pill after">After</div>
-            <div class="t-peek-tab-left">Before</div>
             <div class="t-content">
               <span class="t-quote-mark">"</span>
               <p class="t-quote-text">Night and day difference. Coach keeps you locked in every step of the way.</p>
@@ -1742,22 +1683,6 @@
 
     tPips.forEach(p  => p.addEventListener('click', () => tGoTo(+p.dataset.goto)));
     tChips.forEach(c => c.addEventListener('click', () => tGoTo(+c.dataset.goto)));
-
-    document.querySelectorAll('.t-peek-tab').forEach(tab => {
-      tab.addEventListener('click', e => {
-        e.stopPropagation();
-        const idx = parseInt(tab.closest('.t-card').dataset.index);
-        tGoTo(idx + 1);
-      });
-    });
-
-    document.querySelectorAll('.t-peek-tab-left').forEach(tab => {
-      tab.addEventListener('click', e => {
-        e.stopPropagation();
-        const idx = parseInt(tab.closest('.t-card').dataset.index);
-        tGoTo(idx - 1);
-      });
-    });
 
     tTrack.addEventListener('touchstart', e => {
       tStartX = e.touches[0].clientX; tDragging = true;
