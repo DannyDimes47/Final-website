@@ -1689,6 +1689,12 @@
   </footer>
 
   <script>
+    document.querySelectorAll('video').forEach(v => {
+      v.addEventListener('loadedmetadata', () => { v.currentTime = 0.001; });
+    });
+  </script>
+
+  <script>
     function handleNewsletterSubmit(e) {
       e.preventDefault();
       const form = e.target;
